@@ -107,7 +107,7 @@
             line-height: 100%;
         }
 
-        .label_id.on{
+        .label_id.on {
             top: 3px;
             font-size: 10px;
         }
@@ -123,6 +123,13 @@
             border-radius: 5px;
         }
 
+        .id_reset {
+            width: 20px;
+            height: 20px;
+            background-color: aqua;
+            cursor: pointer;
+        }
+
         .label_password {
             position: absolute;
             top: 63.5px;
@@ -132,7 +139,7 @@
             line-height: 100%;
         }
 
-        .label_password.on{
+        .label_password.on {
             top: 53px;
             font-size: 10px;
         }
@@ -146,6 +153,20 @@
             height: 40px;
             border: 1px solid rgb(54, 113, 77);
             border-radius: 5px;
+        }
+
+        .password_reset {
+            width: 20px;
+            height: 20px;
+            background-color: rgb(40, 89, 89);
+            cursor: pointer;
+        }
+
+        .password_show {
+            width: 20px;
+            height: 20px;
+            background-color: rgb(107, 66, 165);
+            cursor: pointer;
         }
 
         .id_submit {
@@ -179,8 +200,11 @@
         <form onsubmit="printResult(event)" class="id_form">
             <label for="id" class="label_id">아이디</label>
             <input type="text" id="id" name="id">
+            <div class="id_reset"></div>
             <label for="password" class="label_password">비밀번호</label>
             <input type="password" id="password" name="password">
+            <div class="password_show"></div>
+            <div class="password_reset"></div>
             <input type="submit" class="id_submit">
         </form>
         <button onclick="showPage('enter_member')">회원가입</button>
@@ -224,6 +248,7 @@
 
         const label_id = document.querySelector(".label_id");
         const sharp_id = document.querySelector("#id");
+        const id_reset = document.querySelector(".id_reset");
 
         function updateLabel() {
             if (sharp_id === document.activeElement || sharp_id.value.trim() !== "") {
@@ -233,12 +258,18 @@
             }
         }
 
+        id_reset.addEventListener("click", () => {
+            sharp_id.value = ''
+        });
+
         sharp_id.addEventListener('focus', updateLabel);
         sharp_id.addEventListener('blur', updateLabel);
         sharp_id.addEventListener('input', updateLabel);
 
         const label_password = document.querySelector(".label_password");
         const sharp_password = document.querySelector("#password");
+        const password_reset = document.querySelector(".password_reset");
+        const password_show = document.querySelector(".password_show");
 
         function updateLabel_sharp() {
             if (sharp_password === document.activeElement || sharp_password.value.trim() !== "") {
@@ -247,6 +278,23 @@
                 label_password.classList.remove("on");
             }
         }
+
+        password_reset.addEventListener("click", () => {
+            sharp_password.value = ''
+        });
+        /*
+                password_show
+                
+                <input type="password" id="password">
+        <button type="button" id="eye">👁️</button>
+        
+        <script>
+          document.getElementById("eye").onclick = () => {
+            const pw = document.getElementById("password");
+            pw.type = pw.type === "password" ? "text" : "password";
+          };
+        
+            */
 
         sharp_password.addEventListener('focus', updateLabel_sharp);
         sharp_password.addEventListener('blur', updateLabel_sharp);
