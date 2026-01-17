@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <style>
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2') format('woff2');
+            font-weight: 100;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraLight.woff2') format('woff2');
+            font-weight: 200;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');
+            font-weight: 300;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-SemiBold.woff2') format('woff2');
+            font-weight: 600;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraBold.woff2') format('woff2');
+            font-weight: 800;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Black.woff2') format('woff2');
+            font-weight: 900;
+            font-display: swap;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard';
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #333333;
+        }
+
+        header {
+            width: 20px;
+            height: 20px;
+            border: 1px solid rgb(54, 113, 77);
+            border-radius: 5px;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        #main {
+            margin-top: 10px;
+        }
+
+        .id_form {
+            width: 100vw;
+            height: 140px;
+            position: relative;
+        }
+
+        .label_id {
+            position: absolute;
+            top: 13.5px;
+            left: 27vw;
+            z-index: 1;
+            font-size: 13px;
+            line-height: 100%;
+        }
+
+        .label_id.on{
+            top: 3px;
+            font-size: 10px;
+        }
+
+        .id_form>#id {
+            position: absolute;
+            top: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50vw;
+            height: 40px;
+            border: 1px solid rgb(54, 113, 77);
+            border-radius: 5px;
+        }
+
+        .label_password {
+            position: absolute;
+            top: 63.5px;
+            left: 27vw;
+            z-index: 1;
+            font-size: 13px;
+            line-height: 100%;
+        }
+
+        .label_password.on{
+            top: 53px;
+            font-size: 10px;
+        }
+
+        .id_form>#password {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50vw;
+            height: 40px;
+            border: 1px solid rgb(54, 113, 77);
+            border-radius: 5px;
+        }
+
+        .id_submit {
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50vw;
+            height: 30px;
+            cursor: pointer;
+            border: 1px solid rgb(54, 113, 77);
+            border-radius: 5px;
+            background-color: transparent;
+            font-size: 13px;
+        }
+
+        .id_submit:hover {
+            background-color: rgb(54, 113, 77);
+            color: #ebebeb;
+        }
+
+        #result_area {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header onclick="showPage('main')"></header>
+    <div class="page_select" id="main" style="display: block">
+        <form onsubmit="printResult(event)" class="id_form">
+            <label for="id" class="label_id">아이디</label>
+            <input type="text" id="id" name="id">
+            <label for="password" class="label_password">비밀번호</label>
+            <input type="password" id="password" name="password">
+            <input type="submit" class="id_submit">
+        </form>
+        <button onclick="showPage('enter_member')">회원가입</button>
+    </div>
+    <!--회원가입 페이지-->
+    <div class="page_select" id="enter_member" style="display: none">
+        <form action="./result.html" method="get">
+            <label for="id">아이디</label>
+            <input type="text" id="id" name="id">
+            <label for="password">비번</label>
+            <input type="password" id="password" name="password">
+            <input type="submit">
+        </form>
+    </div>
+
+    <div id="result_area"></div>
+
+    <script>
+        function showPage(page_for_show) {
+            document.querySelectorAll('.page_select').forEach(function (pa) {
+                pa.style.display = 'none';
+                document.getElementById(page_for_show).style.display = 'block';
+            });
+
+            location.hash = page_for_show;
+        }
+
+        function printResult(event) {
+            event.preventDefault();
+
+            const id = document.getElementById('id').value;
+            const password = document.getElementById('password').value;
+
+            const resultArea = document.getElementById('result_area');
+
+            const p = document.createElement('p');
+            p.textContent = `아이디: ${id}, 비밀번호: ${password}`;
+
+            resultArea.appendChild(p);
+        }
+
+        const label_id = document.querySelector(".label_id");
+        const sharp_id = document.querySelector("#id");
+
+        function updateLabel() {
+            if (sharp_id === document.activeElement || sharp_id.value.trim() !== "") {
+                label_id.classList.add("on");
+            } else {
+                label_id.classList.remove("on");
+            }
+        }
+
+        sharp_id.addEventListener('focus', updateLabel);
+        sharp_id.addEventListener('blur', updateLabel);
+        sharp_id.addEventListener('input', updateLabel);
+
+        const label_password = document.querySelector(".label_password");
+        const sharp_password = document.querySelector("#password");
+
+        function updateLabel_sharp() {
+            if (sharp_password === document.activeElement || sharp_password.value.trim() !== "") {
+                label_password.classList.add("on");
+            } else {
+                label_password.classList.remove("on");
+            }
+        }
+
+        sharp_password.addEventListener('focus', updateLabel_sharp);
+        sharp_password.addEventListener('blur', updateLabel_sharp);
+        sharp_password.addEventListener('input', updateLabel_sharp);
+    </script>
+</body>
+
+</html>
